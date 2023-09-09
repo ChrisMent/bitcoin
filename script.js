@@ -81,9 +81,12 @@ async function loadMonthlyData() {
         // Zum Array hinzufügen
         monthlyClosingCourses.push({
           day: formattedDate,  // Verwenden des umformatierten Datums
-          closingCourse: closingCourse
+          closingCourse: parseFloat(closingCourse) // Mit parseFloat String in eine Zahl umwandel
         });
       }
+
+        // Umkehren der Reihenfolge des Arrays
+        monthlyClosingCourses.reverse();
 
       console.log(monthlyClosingCourses);
       
@@ -101,7 +104,7 @@ function renderChart(){
   const ctx = document.getElementById('myChart');
   
     new Chart(ctx, {
-      type: 'bar',
+      type: 'line',
       data: {
         labels: days,
         datasets: [{
